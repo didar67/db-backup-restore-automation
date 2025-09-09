@@ -1,0 +1,35 @@
+# Application Config
+app_name: dbbackup_tool
+
+# Runtime Options
+runtime:
+  dry_run: false       # True to simulate commands without executing
+  verbose: true        # True for verbose logging
+
+# Paths
+paths:
+  backup_dir: ./backup  # Directory to store backup files
+  log_dir: ./logs       # Directory to store log files
+
+# Database Config
+database:
+  type: postgresql        # postgres or mysql
+  host: localhost
+  port: 5432
+  user: dbuser
+  password: dbpassword
+  default_databases:    # List of databases to backup
+    - mydb1
+    - mydb2
+  include_databases:     # List of databases to backup
+    - mydb1
+    - mydb2
+  restore:
+    allow_drop: true    # True to allow dropping objects before restore
+  dump:
+    postgresql:
+      format: custom    # pg_dump format: custom, plain, tar
+      jobs: 4           # Parallel jobs for pg_dump
+      options: []       # Additional pg_dump options
+    mysql:
+      options: []       # Additional mysqldump options
